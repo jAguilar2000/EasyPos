@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
   <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.props" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -46,10 +47,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -122,8 +131,63 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CategoriaProducto.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EasyPos.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyPos.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EasyPos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EasyPos.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EasyPos.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Estados.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Factura.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FacturaDetalle.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Inventario.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrdenCompra.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\OrdenCompraDetalle.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Producto.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Proveedor.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rol.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioRol.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -143,7 +207,24 @@
     <Content Include="Content\images\user.png" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\EasyPos.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EasyPos.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\EasyPos.edmx.diagram">
+      <DependentUpon>EasyPos.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1-vsdoc.js" />
+    <Content Include="Models\EasyPos.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EasyPos.edmx</DependentUpon>
+      <LastGenOutput>EasyPos.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\EasyPos.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EasyPos.edmx</DependentUpon>
+      <LastGenOutput>EasyPos.cs</LastGenOutput>
+    </Content>
     <Content Include="Vendors\bootstrap-daterangepicker\daterangepicker.css" />
     <Content Include="Vendors\bootstrap-daterangepicker\daterangepicker.js" />
     <Content Include="Vendors\bootstrap-daterangepicker\demo.html" />
@@ -327,6 +408,52 @@
     <Content Include="Vendors\Chart.js\test\scale.logarithmic.tests.js" />
     <Content Include="Vendors\Chart.js\test\scale.radialLinear.tests.js" />
     <Content Include="Vendors\Chart.js\test\scale.time.tests.js" />
+    <Content Include="Vendors\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="Vendors\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="Vendors\datatables.net-bs\js\dataTables.bootstrap.js" />
+    <Content Include="Vendors\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="Vendors\datatables.net-bs\License.txt" />
+    <Content Include="Vendors\datatables.net-buttons-bs\css\buttons.bootstrap.css" />
+    <Content Include="Vendors\datatables.net-buttons-bs\css\buttons.bootstrap.min.css" />
+    <Content Include="Vendors\datatables.net-buttons-bs\js\buttons.bootstrap.js" />
+    <Content Include="Vendors\datatables.net-buttons-bs\js\buttons.bootstrap.min.js" />
+    <Content Include="Vendors\datatables.net-buttons-bs\License.txt" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.colVis.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.colVis.min.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.flash.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.flash.min.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.html5.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.html5.min.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.print.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\buttons.print.min.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\dataTables.buttons.js" />
+    <Content Include="Vendors\datatables.net-buttons\js\dataTables.buttons.min.js" />
+    <Content Include="Vendors\datatables.net-buttons\License.txt" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\css\fixedHeader.bootstrap.css" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\css\fixedHeader.bootstrap.min.css" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\License.txt" />
+    <Content Include="Vendors\datatables.net-fixedheader\js\dataTables.fixedHeader.js" />
+    <Content Include="Vendors\datatables.net-fixedheader\js\dataTables.fixedHeader.min.js" />
+    <Content Include="Vendors\datatables.net-fixedheader\License.txt" />
+    <Content Include="Vendors\datatables.net-keytable\js\dataTables.keyTable.js" />
+    <Content Include="Vendors\datatables.net-keytable\js\dataTables.keyTable.min.js" />
+    <Content Include="Vendors\datatables.net-keytable\License.txt" />
+    <Content Include="Vendors\datatables.net-responsive-bs\css\responsive.bootstrap.css" />
+    <Content Include="Vendors\datatables.net-responsive-bs\css\responsive.bootstrap.min.css" />
+    <Content Include="Vendors\datatables.net-responsive-bs\js\responsive.bootstrap.js" />
+    <Content Include="Vendors\datatables.net-responsive-bs\License.txt" />
+    <Content Include="Vendors\datatables.net-responsive\js\dataTables.responsive.js" />
+    <Content Include="Vendors\datatables.net-responsive\js\dataTables.responsive.min.js" />
+    <Content Include="Vendors\datatables.net-responsive\License.txt" />
+    <Content Include="Vendors\datatables.net-scroller-bs\css\scroller.bootstrap.css" />
+    <Content Include="Vendors\datatables.net-scroller-bs\css\scroller.bootstrap.min.css" />
+    <Content Include="Vendors\datatables.net-scroller-bs\License.txt" />
+    <Content Include="Vendors\datatables.net-scroller\js\dataTables.scroller.js" />
+    <Content Include="Vendors\datatables.net-scroller\js\dataTables.scroller.min.js" />
+    <Content Include="Vendors\datatables.net-scroller\License.txt" />
+    <Content Include="Vendors\datatables.net\js\jquery.dataTables.js" />
+    <Content Include="Vendors\datatables.net\js\jquery.dataTables.min.js" />
+    <Content Include="Vendors\datatables.net\License.txt" />
     <Content Include="Vendors\DateJS\build\date-af-ZA.js" />
     <Content Include="Vendors\DateJS\build\date-ar-AE.js" />
     <Content Include="Vendors\DateJS\build\date-ar-BH.js" />
@@ -1793,10 +1920,45 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Vendors\datatables.net-bs\.bower.json" />
+    <Content Include="Vendors\datatables.net-bs\bower.json" />
+    <Content Include="Vendors\datatables.net-bs\Readme.md" />
+    <Content Include="Vendors\datatables.net-buttons-bs\.bower.json" />
+    <Content Include="Vendors\datatables.net-buttons-bs\bower.json" />
+    <Content Include="Vendors\datatables.net-buttons-bs\Readme.md" />
+    <Content Include="Vendors\datatables.net-buttons\.bower.json" />
+    <Content Include="Vendors\datatables.net-buttons\bower.json" />
+    <Content Include="Vendors\datatables.net-buttons\Readme.md" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\.bower.json" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\bower.json" />
+    <Content Include="Vendors\datatables.net-fixedheader-bs\Readme.md" />
+    <Content Include="Vendors\datatables.net-fixedheader\.bower.json" />
+    <Content Include="Vendors\datatables.net-fixedheader\bower.json" />
+    <Content Include="Vendors\datatables.net-fixedheader\Readme.md" />
+    <Content Include="Vendors\datatables.net-keytable\.bower.json" />
+    <Content Include="Vendors\datatables.net-keytable\bower.json" />
+    <Content Include="Vendors\datatables.net-keytable\Readme.md" />
+    <Content Include="Vendors\datatables.net-responsive-bs\.bower.json" />
+    <Content Include="Vendors\datatables.net-responsive-bs\bower.json" />
+    <Content Include="Vendors\datatables.net-responsive-bs\Readme.md" />
+    <Content Include="Vendors\datatables.net-responsive\.bower.json" />
+    <Content Include="Vendors\datatables.net-responsive\bower.json" />
+    <Content Include="Vendors\datatables.net-responsive\Readme.md" />
+    <Content Include="Vendors\datatables.net-scroller-bs\.bower.json" />
+    <Content Include="Vendors\datatables.net-scroller-bs\bower.json" />
+    <Content Include="Vendors\datatables.net-scroller-bs\Readme.md" />
+    <Content Include="Vendors\datatables.net-scroller\.bower.json" />
+    <Content Include="Vendors\datatables.net-scroller\bower.json" />
+    <Content Include="Vendors\datatables.net-scroller\Readme.md" />
+    <Content Include="Vendors\datatables.net\.bower.json" />
+    <Content Include="Vendors\datatables.net\bower.json" />
+    <Content Include="Vendors\datatables.net\Readme.md" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1806,6 +1968,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -1842,8 +2005,11 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.props'))" />
     <Error Condition="!Exists('..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.targets'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
   </Target>
   <Import Project="..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.targets" Condition="Exists('..\packages\Microsoft.TypeScript.MSBuild.5.2.2\build\Microsoft.TypeScript.MSBuild.targets')" />
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

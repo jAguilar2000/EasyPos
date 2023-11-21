@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1ea07d845cb1408ba69d8aab035b7d10" Name="Diagram1">
+        <EntityTypeShape EntityType="EasyPosModel.CategoriaProducto" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Cliente" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Estados" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Factura" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.FacturaDetalle" Width="1.5" PointX="8.25" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Inventario" Width="1.5" PointX="8.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.OrdenCompra" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.OrdenCompraDetalle" Width="1.5" PointX="11.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Producto" Width="1.5" PointX="6" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Proveedor" Width="1.5" PointX="3.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Rol" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.Usuario" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyPosModel.UsuarioRol" Width="1.5" PointX="3" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="EasyPosModel.FK_CategoriaProducto_Producto_categoriaId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Cliente_Factura_clienteId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Estados_Factura_estadoId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Estados_OrdenCompraDetalle_estadoId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Factura_FacturaDetalle_facturaId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Usuario_Factura_usuarioCrea" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Usuario_Factura_usuarioModifica" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Producto_FacturaDetalle_productoId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Producto_Inventario_productoId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_OrdenCompra_OrdenCompraDetalle_compraId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Proveedor_OrdenCompra_proveedorId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Usuario_OrdenCompra_usuarioId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Producto_OrdenCompraDetalle_productoId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Rol_UsuarioRol_rolId" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyPosModel.FK_Usuario_UsuarioRol_usuarioId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

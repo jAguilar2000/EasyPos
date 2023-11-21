@@ -21,8 +21,13 @@
 
     <link href="~/Vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
 
+    <link href="~/Vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/Vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet" />
     <!-- Custom Theme Style -->
     <link href="~/Content/Alela/css/custom.min.css" rel="stylesheet" />
+
 
     @RenderSection("styles", required: false)
 
@@ -88,7 +93,7 @@
                                 <li>
                                     <a><i class="fa fa-user"></i> Usuarios <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li><a href="e_commerce.html">Lista Usuarios</a></li>
+                                        <li><a href="@Url.Action("Index", "Usuarios")">Lista Usuarios</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -260,6 +265,16 @@
     <script src="~/Vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <script src="~/Content/Alela/js/custom.js"></script>
+
+    <script src="~/Vendors/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="~/Vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+
+    <script src="~/Vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+
+
 
     @RenderSection("scripts", required: false)
 
