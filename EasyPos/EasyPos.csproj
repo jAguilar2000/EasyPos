@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -1956,6 +1957,11 @@
     <Content Include="Vendors\datatables.net\.bower.json" />
     <Content Include="Vendors\datatables.net\bower.json" />
     <Content Include="Vendors\datatables.net\Readme.md" />
+    <Content Include="Views\Rols\Create.cshtml" />
+    <Content Include="Views\Rols\Delete.cshtml" />
+    <Content Include="Views\Rols\Details.cshtml" />
+    <Content Include="Views\Rols\Edit.cshtml" />
+    <Content Include="Views\Rols\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

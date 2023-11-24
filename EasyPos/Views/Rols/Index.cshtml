@@ -1,16 +1,17 @@
-﻿@model IEnumerable<EasyPos.Models.Usuario>
+﻿@model IEnumerable<EasyPos.Models.Rol>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<a class="btn btn-primary" href="@Url.Action("Create")"> <i class="fa fa-plus"></i> Registrar Usuario</a>
+<a class="btn btn-primary" href="@Url.Action("Create")"> <i class="fa fa-plus"></i> Registrar Rol</a>
+
 <div class="row">
     <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Lista de usuarios</h2>
+                <h2>Lista de Roles</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -24,13 +25,7 @@
                                             Id
                                         </th>
                                         <th>
-                                            Usuario
-                                        </th>
-                                        <th>
-                                            Nombre
-                                        </th>
-                                        <th>
-                                            Email
+                                            Nombre Rol
                                         </th>
                                         <th>
                                             Estado
@@ -44,16 +39,10 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.usuarioId)
+                                                @Html.DisplayFor(modelItem => item.rolId)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.usuario1)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.nombre)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.email)
+                                                @Html.DisplayFor(modelItem => item.descripcion)
                                             </td>
                                             <td>
                                                 @if (item.estado)
@@ -65,15 +54,14 @@
                                                     <apan class="badge badge-danger">Inactivo</apan>
 
                                                 }
-                                                @*@Html.DisplayFor(modelItem => item.estado)*@
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning" href="@Url.Action("Edit", "Usuarios", new {id = item.usuarioId})"><i class="fa fa-edit"></i></a>
+                                                <a class="btn btn-warning" href="@Url.Action("Edit", "Rols", new {id = item.rolId})"><i class="fa fa-edit"></i></a>
+
                                             </td>
                                         </tr>
                                     }
                                 </tbody>
-
                             </table>
                         </div>
                     </div>
@@ -82,3 +70,4 @@
         </div>
     </div>
 </div>
+
