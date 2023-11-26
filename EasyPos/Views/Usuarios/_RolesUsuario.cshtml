@@ -1,0 +1,113 @@
+﻿@model EasyPos.Models.ViewModels.UsuarioVM
+
+<div class="row">
+    <div class="col-md-12 col-sm-12 ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Listado de Roles</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalCreate">
+                            <i class="ace-icon fa fa-plus-circle bigger-120"></i>
+                            Registrar Nuevo
+                        </button>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-bordered table-hover table-striped w-100">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Rol
+                                        </th>
+                                        <th>
+                                            Estado
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Usuario.UsuarioRol)
+                                    {
+                                        <tr data-rol="@item.rolId">
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Rol.descripcion)
+                                            </td>
+                                            <td>
+                                                @if (item.estado)
+                                                {
+                                                    <apan class="badge badge-success">Activo</apan>
+                                                }
+                                                else
+                                                {
+                                                    <apan class="badge badge-danger">Inactivo</apan>
+                                                }
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-warning btn-sm" data-rel="tooltip" id="btnEditarRol" title="Editar" data-toggle="modal" data-target="#Editar_@item.usuarioRolId">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>
+                                            </td>
+                                            <!-- Modal Editar Roles-->
+                                            <div id="Editar_@item.usuarioRolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel"> Editar Rol</h4>
+                                                            <button type="button" class="close" data-dismiss="modal">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
+                                                        {
+                                                            <div class="modal-body" id="EditarTipoEvaluacion">
+                                                                @Html.Partial("_EditarRol", new EasyPos.Models.UsuarioRol() { usuarioRolId = item.usuarioRolId, usuarioId = item.usuarioId, rolId = item.rolId, estado = item.estado })
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Editar</button>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Registrar Nuevos Roles-->
+
+<div id="modalCreate" class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel"> Asignar Rol</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
+            {
+                <div class="modal-body">
+                    @Html.Partial("_AgregarRol", new EasyPos.Models.UsuarioRol() { usuarioId = ViewBag.userId })
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Agregar</button>
+                </div>
+            }
+            @{Html.EndForm();}
+        </div>
+    </div>
+</div>

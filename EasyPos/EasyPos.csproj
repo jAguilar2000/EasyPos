@@ -190,6 +190,7 @@
     <Compile Include="Models\UsuarioRol.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\UsuarioVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1962,6 +1963,10 @@
     <Content Include="Views\Rols\Details.cshtml" />
     <Content Include="Views\Rols\Edit.cshtml" />
     <Content Include="Views\Rols\Index.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\_RolesUsuario.cshtml" />
+    <Content Include="Views\Usuarios\_EditarRol.cshtml" />
+    <Content Include="Views\Usuarios\_AgregarRol.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

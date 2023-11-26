@@ -1,0 +1,21 @@
+﻿@model EasyPos.Models.UsuarioRol
+
+
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.usuarioId)
+
+
+    <div class="item form-group col-md-12 col-sm-12 has-feedback">
+        @Html.DropDownList("rolId", null, new { @class = "select2 form-control has-feedback-left" })
+        <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.rolId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

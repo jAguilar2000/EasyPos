@@ -1,0 +1,42 @@
+﻿@model EasyPos.Models.UsuarioRol
+
+
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.usuarioRolId)
+    @Html.HiddenFor(model => model.usuarioId)
+
+
+    <div class="item form-group col-md-12 col-sm-12 has-feedback">
+        @Html.DropDownList("rolId", null, htmlAttributes: new { @class = "select2 form-control has-feedback-left" })
+        <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.rolId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="item form-group col-md-12 col-sm-12">
+        <div class="col-md-12">
+            <div class="checkbox">
+                <label>
+                    @Html.CheckBoxFor(model => model.estado, new { @class = "flat", @checked = "checked" }) Estado
+                </label>
+                @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $('input').iCheck({
+                // Opciones para la inicialización del plugin iCheck
+            });
+        });
+
+    </script>
+}
