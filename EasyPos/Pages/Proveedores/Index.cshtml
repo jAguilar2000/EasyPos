@@ -1,0 +1,60 @@
+﻿@page
+@model EasyPos.Pages.Proveedores.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Dni)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor[0].Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Proveedor) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dni)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.ProveedorId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.ProveedorId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.ProveedorId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

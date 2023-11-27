@@ -1,0 +1,49 @@
+﻿@page
+@model EasyPos.Pages.Categorias.IndexModel
+
+@{
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaProducto[0].Descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoriaProducto[0].Estado)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.CategoriaProducto) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.CategoriaId">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.CategoriaId">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.CategoriaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
