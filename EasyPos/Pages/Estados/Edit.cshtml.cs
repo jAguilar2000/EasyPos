@@ -1,20 +1,15 @@
 ﻿using EasyPos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Estados
 {
     public class EditModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public EditModel(EasyPos.Models.EasyPosDb context)
+        public EditModel(EasyPosDb context)
         {
             _context = context;
         }
@@ -29,7 +24,7 @@ namespace EasyPos.Pages.Estados
                 return NotFound();
             }
 
-            var estado =  await _context.Estados.FirstOrDefaultAsync(m => m.EstadoId == id);
+            var estado = await _context.Estados.FirstOrDefaultAsync(m => m.EstadoId == id);
             if (estado == null)
             {
                 return NotFound();
@@ -70,7 +65,7 @@ namespace EasyPos.Pages.Estados
 
         private bool EstadoExists(int id)
         {
-          return (_context.Estados?.Any(e => e.EstadoId == id)).GetValueOrDefault();
+            return (_context.Estados?.Any(e => e.EstadoId == id)).GetValueOrDefault();
         }
     }
 }

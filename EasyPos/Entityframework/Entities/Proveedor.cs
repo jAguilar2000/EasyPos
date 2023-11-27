@@ -4,7 +4,7 @@ namespace EasyPos.Models
     using System.ComponentModel.DataAnnotations;
 
     public partial class Proveedor
-    {    
+    {
         [Key]
         public int ProveedorId { get; set; }
         public string Dni { get; set; } = string.Empty;

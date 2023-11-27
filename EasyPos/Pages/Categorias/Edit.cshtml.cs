@@ -1,20 +1,15 @@
 ﻿using EasyPos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Categorias
 {
     public class EditModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public EditModel(EasyPos.Models.EasyPosDb context)
+        public EditModel(EasyPosDb context)
         {
             _context = context;
         }
@@ -29,7 +24,7 @@ namespace EasyPos.Pages.Categorias
                 return NotFound();
             }
 
-            var categoriaproducto =  await _context.CategoriaProducto.FirstOrDefaultAsync(m => m.CategoriaId == id);
+            var categoriaproducto = await _context.CategoriaProducto.FirstOrDefaultAsync(m => m.CategoriaId == id);
             if (categoriaproducto == null)
             {
                 return NotFound();
@@ -70,7 +65,7 @@ namespace EasyPos.Pages.Categorias
 
         private bool CategoriaProductoExists(int id)
         {
-          return (_context.CategoriaProducto?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
+            return (_context.CategoriaProducto?.Any(e => e.CategoriaId == id)).GetValueOrDefault();
         }
     }
 }

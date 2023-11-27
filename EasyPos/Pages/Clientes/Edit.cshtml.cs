@@ -1,20 +1,15 @@
 ﻿using EasyPos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Clientes
 {
     public class EditModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public EditModel(EasyPos.Models.EasyPosDb context)
+        public EditModel(EasyPosDb context)
         {
             _context = context;
         }
@@ -29,7 +24,7 @@ namespace EasyPos.Pages.Clientes
                 return NotFound();
             }
 
-            var cliente =  await _context.Cliente.FirstOrDefaultAsync(m => m.ClienteId == id);
+            var cliente = await _context.Cliente.FirstOrDefaultAsync(m => m.ClienteId == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -70,7 +65,7 @@ namespace EasyPos.Pages.Clientes
 
         private bool ClienteExists(int id)
         {
-          return (_context.Cliente?.Any(e => e.ClienteId == id)).GetValueOrDefault();
+            return (_context.Cliente?.Any(e => e.ClienteId == id)).GetValueOrDefault();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace EasyPos.Models
         public decimal Precio { get; set; }
         public decimal Isv { get; set; }
         public bool Estado { get; set; }
-    
+
         public virtual CategoriaProducto CategoriaProducto { get; set; } = new CategoriaProducto();
         public virtual ICollection<FacturaDetalle> FacturaDetalle { get; set; } = new HashSet<FacturaDetalle>();
         public virtual ICollection<Inventario> Inventario { get; set; } = new HashSet<Inventario>();

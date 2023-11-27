@@ -1,11 +1,13 @@
 using EasyPos.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<EasyPosDb>();
+builder.Services.AddDbContext<EasyPosDb>(a => a.UseSqlServer(builder.Configuration.GetConnectionString("EasyPOS")));
+//builder.Services.AddDbContext<EasyPosDb>();
 
 var app = builder.Build();
 

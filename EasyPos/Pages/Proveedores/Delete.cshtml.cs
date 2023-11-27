@@ -2,24 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Proveedores
 {
     public class DeleteModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public DeleteModel(EasyPos.Models.EasyPosDb context)
+        public DeleteModel(EasyPosDb context)
         {
             _context = context;
         }
 
         [BindProperty]
-      public Proveedor Proveedor { get; set; } = default!;
+        public Proveedor Proveedor { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -34,7 +30,7 @@ namespace EasyPos.Pages.Proveedores
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Proveedor = proveedor;
             }

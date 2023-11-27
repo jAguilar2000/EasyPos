@@ -14,7 +14,7 @@ namespace EasyPos.Models
         public decimal SubTotal { get; set; }
         public decimal Isv { get; set; }
         public bool Estado { get; set; }
-    
+
         public virtual Factura Factura { get; set; } = new Factura();
         public virtual Producto Producto { get; set; } = new Producto();
     }

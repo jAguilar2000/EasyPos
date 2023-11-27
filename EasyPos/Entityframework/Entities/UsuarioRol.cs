@@ -10,7 +10,7 @@ namespace EasyPos.Models
         public int UsuarioId { get; set; }
         public int RolId { get; set; }
         public bool Estado { get; set; }
-    
+
         public virtual Rol Rol { get; set; } = new Rol();
         public virtual Usuario Usuario { get; set; } = new Usuario();
     }

@@ -2,23 +2,19 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Productos
 {
     public class DetailsModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public DetailsModel(EasyPos.Models.EasyPosDb context)
+        public DetailsModel(EasyPosDb context)
         {
             _context = context;
         }
 
-      public Producto Producto { get; set; } = default!; 
+        public Producto Producto { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -32,7 +28,7 @@ namespace EasyPos.Pages.Productos
             {
                 return NotFound();
             }
-            else 
+            else
             {
                 Producto = producto;
             }

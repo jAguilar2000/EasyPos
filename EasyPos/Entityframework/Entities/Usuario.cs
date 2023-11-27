@@ -10,7 +10,7 @@ namespace EasyPos.Models
             OrdenCompra = new HashSet<OrdenCompra>();
             UsuarioRol = new HashSet<UsuarioRol>();
         }
-    
+
         [Key]
         public int UsuarioId { get; set; }
         public string Nombre { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ namespace EasyPos.Models
         public string Password { get; set; } = string.Empty;
         public string Email { get; set; } = string.Empty;
         public bool Estado { get; set; }
-    
+
         public virtual ICollection<OrdenCompra> OrdenCompra { get; set; }
         public virtual ICollection<UsuarioRol> UsuarioRol { get; set; }
     }

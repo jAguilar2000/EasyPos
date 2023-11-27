@@ -1,20 +1,15 @@
 ﻿using EasyPos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Proveedores
 {
     public class EditModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public EditModel(EasyPos.Models.EasyPosDb context)
+        public EditModel(EasyPosDb context)
         {
             _context = context;
         }
@@ -29,7 +24,7 @@ namespace EasyPos.Pages.Proveedores
                 return NotFound();
             }
 
-            var proveedor =  await _context.Proveedor.FirstOrDefaultAsync(m => m.ProveedorId == id);
+            var proveedor = await _context.Proveedor.FirstOrDefaultAsync(m => m.ProveedorId == id);
             if (proveedor == null)
             {
                 return NotFound();
@@ -70,7 +65,7 @@ namespace EasyPos.Pages.Proveedores
 
         private bool ProveedorExists(int id)
         {
-          return (_context.Proveedor?.Any(e => e.ProveedorId == id)).GetValueOrDefault();
+            return (_context.Proveedor?.Any(e => e.ProveedorId == id)).GetValueOrDefault();
         }
     }
 }

@@ -3,18 +3,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EasyPos.Pages.Productos
 {
     public class EditModel : PageModel
     {
-        private readonly EasyPos.Models.EasyPosDb _context;
+        private readonly EasyPosDb _context;
 
-        public EditModel(EasyPos.Models.EasyPosDb context)
+        public EditModel(EasyPosDb context)
         {
             _context = context;
         }
@@ -29,13 +25,13 @@ namespace EasyPos.Pages.Productos
                 return NotFound();
             }
 
-            var producto =  await _context.Producto.FirstOrDefaultAsync(m => m.ProductoId == id);
+            var producto = await _context.Producto.FirstOrDefaultAsync(m => m.ProductoId == id);
             if (producto == null)
             {
                 return NotFound();
             }
             Producto = producto;
-           ViewData["CategoriaId"] = new SelectList(_context.CategoriaProducto, "CategoriaId", "CategoriaId");
+            ViewData["CategoriaId"] = new SelectList(_context.CategoriaProducto, "CategoriaId", "CategoriaId");
             return Page();
         }
 
@@ -71,7 +67,7 @@ namespace EasyPos.Pages.Productos
 
         private bool ProductoExists(int id)
         {
-          return (_context.Producto?.Any(e => e.ProductoId == id)).GetValueOrDefault();
+            return (_context.Producto?.Any(e => e.ProductoId == id)).GetValueOrDefault();
         }
     }
 }

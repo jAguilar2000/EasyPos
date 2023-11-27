@@ -15,7 +15,7 @@ namespace EasyPos.Models
         public decimal Total { get; set; }
         public int UsuarioId { get; set; }
         public bool Estado { get; set; }
-    
+
         public virtual ICollection<OrdenCompraDetalle> OrdenCompraDetalle { get; set; } = new HashSet<OrdenCompraDetalle>();
         public virtual Proveedor Proveedor { get; set; } = new Proveedor();
         public virtual Usuario Usuario { get; set; } = new Usuario();
