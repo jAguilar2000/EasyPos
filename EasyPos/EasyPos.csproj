@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdenesCompraController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -190,6 +191,10 @@
     <Compile Include="Models\UsuarioRol.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\OrdenCompraDetalleVM.cs" />
+    <Compile Include="Models\ViewModels\OrdenCompraVM.cs" />
+    <Compile Include="Models\ViewModels\ProductoVM.cs" />
+    <Compile Include="Models\ViewModels\ProveedorVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1967,6 +1972,8 @@
     <Content Include="Views\Usuarios\_RolesUsuario.cshtml" />
     <Content Include="Views\Usuarios\_EditarRol.cshtml" />
     <Content Include="Views\Usuarios\_AgregarRol.cshtml" />
+    <Content Include="Views\OrdenesCompra\Index.cshtml" />
+    <Content Include="Views\OrdenesCompra\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
