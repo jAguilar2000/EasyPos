@@ -48,13 +48,13 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.rolId)
+                                                @Html.DisplayFor(modelItem => item.RolId)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.descripcion)
+                                                @Html.DisplayFor(modelItem => item.Descripcion)
                                             </td>
                                             <td>
-                                                @if (item.estado)
+                                                @if (item.Estado)
                                                 {
                                                     <apan class="badge badge-success">Activo</apan>
                                                 }
@@ -65,13 +65,13 @@
                                                 }
                                             </td>
                                             <td>
-                                                <a data-rel="tooltip" data-toggle="modal" data-target="#Editar_@item.rolId" class="btn btn-warning btn-sm" title="Modificar">
+                                                <a data-rel="tooltip" data-toggle="modal" data-target="#Editar_@item.RolId" class="btn btn-warning btn-sm" title="Modificar">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                         <!-- Modal Editar Roles-->
-                                        <div id="Editar_@item.rolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div id="Editar_@item.RolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -81,7 +81,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" id="EditarTipoEvaluacion">
-                                                        @Html.Partial("Edit", new EasyPos.Models.Rol() { rolId = item.rolId, descripcion = item.descripcion, estado = item.estado })
+                                                        @Html.Partial("Edit", new EasyPos.Models.Rol() { RolId = item.RolId, Descripcion = item.Descripcion, Estado = item.Estado })
                                                     </div>
                                                 </div>
                                             </div>

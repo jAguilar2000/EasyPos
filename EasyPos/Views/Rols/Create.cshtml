@@ -11,9 +11,9 @@
 
         <div class="item form-group">
             <div class="col-md-12">
-                @Html.EditorFor(model => model.descripcion, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Descripción", autocomplete ="off" } })
+                @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Descripción", autocomplete ="off" } })
                 <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
-                @Html.ValidationMessageFor(model => model.descripcion, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -26,8 +26,4 @@
         </div>
     </div>
 
-}
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
 }

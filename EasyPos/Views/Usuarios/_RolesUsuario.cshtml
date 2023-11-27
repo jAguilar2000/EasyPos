@@ -34,12 +34,12 @@
                                 <tbody>
                                     @foreach (var item in Model.Usuario.UsuarioRol)
                                     {
-                                        <tr data-rol="@item.rolId">
+                                        <tr data-rol="@item.RolId">
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Rol.descripcion)
+                                                @Html.DisplayFor(modelItem => item.Rol.Descripcion)
                                             </td>
                                             <td>
-                                                @if (item.estado)
+                                                @if (item.Estado)
                                                 {
                                                     <apan class="badge badge-success">Activo</apan>
                                                 }
@@ -49,12 +49,12 @@
                                                 }
                                             </td>
                                             <td>
-                                                <a class="btn btn-warning btn-sm" data-rel="tooltip" id="btnEditarRol" title="Editar" data-toggle="modal" data-target="#Editar_@item.usuarioRolId">
+                                                <a class="btn btn-warning btn-sm" data-rel="tooltip" id="btnEditarRol" title="Editar" data-toggle="modal" data-target="#Editar_@item.UsuarioRolId">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                             </td>
                                             <!-- Modal Editar Roles-->
-                                            <div id="Editar_@item.usuarioRolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                            <div id="Editar_@item.UsuarioRolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                                                 <div class="modal-dialog modal-lg">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
@@ -66,7 +66,7 @@
                                                         @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
                                                         {
                                                             <div class="modal-body" id="EditarTipoEvaluacion">
-                                                                @Html.Partial("_EditarRol", new EasyPos.Models.UsuarioRol() { usuarioRolId = item.usuarioRolId, usuarioId = item.usuarioId, rolId = item.rolId, estado = item.estado })
+                                                                @Html.Partial("_EditarRol", new EasyPos.Models.UsuarioRol() { UsuarioRolId = item.UsuarioRolId, UsuarioId = item.UsuarioId, RolId = item.RolId, Estado = item.Estado })
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Editar</button>
@@ -101,7 +101,7 @@
             @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
             {
                 <div class="modal-body">
-                    @Html.Partial("_AgregarRol", new EasyPos.Models.UsuarioRol() { usuarioId = ViewBag.userId })
+                    @Html.Partial("_AgregarRol", new EasyPos.Models.UsuarioRol() { UsuarioId = ViewBag.userId })
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Agregar</button>

@@ -1,15 +1,19 @@
 ﻿using EasyPos.Models;
 using EasyPos.Models.ViewModels;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyPos.Controllers
 {
     public class UsuariosController : Controller
     {
-        private EasyPosEntities db = new EasyPosEntities();
+        private readonly EasyPosDb db;
+
+        public UsuariosController(EasyPosDb db)
+        {
+            this.db = db;
+        }
 
         public ActionResult Index()
         {
@@ -20,18 +24,18 @@ namespace EasyPos.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             Usuario usuarios = db.Usuario.Find(id);
             if (usuarios == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             var viewModel = new UsuarioVM
             {
                 Usuario = usuarios
             };
-            ViewBag.rolId = new SelectList(db.Rol.Where(x => x.estado), "rolId", "descripcion");
+            ViewBag.RolId = new SelectList(db.Rol.Where(x => x.Estado), "rolId", "descripcion");
             ViewBag.userId = id;
             return View(viewModel);
         }
@@ -43,11 +47,11 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "usuarioId,usuario1,nombre,password,email,estado")] Usuario usuario)
+        public ActionResult Create([FromBody] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                usuario.estado = true;
+                usuario.Estado = true;
                 db.Usuario.Add(usuario);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -60,19 +64,19 @@ namespace EasyPos.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             Usuario usuario = db.Usuario.Find(id);
             if (usuario == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(usuario);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "usuarioId,usuario1,nombre,password,email,estado")] Usuario usuario)
+        public ActionResult Edit([FromBody] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -85,36 +89,36 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult CreateRolUsuario([Bind(Include = "usuarioRolId,usuarioId,rolId,estado")] UsuarioRol usuarioRol)
+        public ActionResult CreateRolUsuario([FromBody] UsuarioRol usuarioRol)
         {
             //var permisoRol = Validate.ValidatePermission(nameof(UsuariosController), "editar");
             //if (!permisoRol.editar && !permisoRol.agregar)
             //{
-            //    return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.usuarioId });
+            //    return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.UsuarioId });
             //}
             if (ModelState.IsValid)
             {
-                var exists = db.UsuarioRol.AsNoTracking().Where(x => x.rolId == usuarioRol.rolId && x.usuarioId == usuarioRol.usuarioId).FirstOrDefault();
+                var exists = db.UsuarioRol.AsNoTracking().Where(x => x.RolId == usuarioRol.RolId && x.UsuarioId == usuarioRol.UsuarioId).FirstOrDefault();
                 if (exists != null)
                 {
-                    exists = db.UsuarioRol.AsNoTracking().Where(x => x.usuarioRolId == usuarioRol.usuarioRolId).FirstOrDefault();
+                    exists = db.UsuarioRol.AsNoTracking().Where(x => x.UsuarioRolId == usuarioRol.UsuarioRolId).FirstOrDefault();
                     if (exists != null)
                     {
                         db.Entry(usuarioRol).State = EntityState.Modified;
                     }
                     db.SaveChanges();
-                    return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.usuarioId });
+                    return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.UsuarioId });
                 }
                 else
                 {
-                    if (usuarioRol.usuarioRolId == 0)
+                    if (usuarioRol.UsuarioRolId == 0)
                     {
-                        usuarioRol.estado = true;
+                        usuarioRol.Estado = true;
                         db.UsuarioRol.Add(usuarioRol);
                     }
                     else
                     {
-                        exists = db.UsuarioRol.AsNoTracking().Where(x => x.usuarioRolId == usuarioRol.usuarioRolId).FirstOrDefault();
+                        exists = db.UsuarioRol.AsNoTracking().Where(x => x.UsuarioRolId == usuarioRol.UsuarioRolId).FirstOrDefault();
                         if (exists != null)
                         {
                             db.Entry(usuarioRol).State = EntityState.Modified;
@@ -123,15 +127,8 @@ namespace EasyPos.Controllers
                 }
                 db.SaveChanges();
             }
-            return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.usuarioId });
+            return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.UsuarioId });
         }
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
     }
 }

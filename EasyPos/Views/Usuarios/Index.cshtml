@@ -54,19 +54,19 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.usuarioId)
+                                                @Html.DisplayFor(modelItem => item.UsuarioId)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.usuario1)
+                                                @Html.DisplayFor(modelItem => item.NombreIdentificador)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.nombre)
+                                                @Html.DisplayFor(modelItem => item.Nombre)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.email)
+                                                @Html.DisplayFor(modelItem => item.Email)
                                             </td>
                                             <td>
-                                                @if (item.estado)
+                                                @if (item.Estado)
                                                 {
                                                     <apan class="badge badge-success">Activo</apan>
                                                 }
@@ -77,17 +77,17 @@
                                                 }
                                             </td>
                                             <td>
-                                                <a data-rel="tooltip" data-toggle="modal" data-target="#Editar_@item.usuarioId" class="btn btn-warning btn-sm" title="Modificar">
+                                                <a data-rel="tooltip" data-toggle="modal" data-target="#Editar_@item.UsuarioId" class="btn btn-warning btn-sm" title="Modificar">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <a href="@Url.Action("Details", "Usuarios", new { id = item.usuarioId })" class="btn btn-primary btn-sm" title="Ver Detalles">
+                                                <a href="@Url.Action("Details", "Usuarios", new { id = item.UsuarioId })" class="btn btn-primary btn-sm" title="Ver Detalles">
                                                     <i class="fa fa-chevron-circle-right"></i>
                                                 </a>
                                             </td>
                                         </tr>
 
                                         <!-- Modal Editar Usuarios-->
-                                        <div id="Editar_@item.usuarioId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div id="Editar_@item.UsuarioId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -97,7 +97,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" id="EditarTipoEvaluacion">
-                                                        @Html.Partial("Edit", new EasyPos.Models.Usuario() { usuarioId = item.usuarioId, usuario1=item.usuario1, nombre = item.nombre, email = item.email, password = item.password})
+                                                        @Html.Partial("Edit", new EasyPos.Models.Usuario() { UsuarioId = item.UsuarioId, NombreIdentificador=item.NombreIdentificador, Nombre = item.Nombre, Email = item.Email, Password = item.Password})
                                                     </div>
                                                 </div>
                                             </div>

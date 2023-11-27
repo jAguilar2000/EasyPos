@@ -1,14 +1,17 @@
 ﻿using EasyPos.Models;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web.Mvc;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EasyPos.Controllers
 {
     public class RolsController : Controller
     {
-        private EasyPosEntities db = new EasyPosEntities();
+        private readonly EasyPosDb db;
+
+        public RolsController(EasyPosDb db)
+        {
+            this.db = db;
+        }
 
         public ActionResult Index()
         {
@@ -22,11 +25,11 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rolId,descripcion,estado")] Rol rol)
+        public ActionResult Create([FromBody] Rol rol)
         {
             if (ModelState.IsValid)
             {
-                rol.estado = true;
+                rol.Estado = true;
                 db.Rol.Add(rol);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -39,19 +42,19 @@ namespace EasyPos.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
             Rol rol = db.Rol.Find(id);
             if (rol == null)
             {
-                return HttpNotFound();
+                return NotFound();
             }
             return View(rol);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "rolId,descripcion,estado")] Rol rol)
+        public ActionResult Edit([FromBody] Rol rol)
         {
             if (ModelState.IsValid)
             {
@@ -62,13 +65,5 @@ namespace EasyPos.Controllers
             return View(rol);
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
     }
 }
