@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EasyPos.Migrations
 {
     [DbContext(typeof(EasyPosDb))]
-    [Migration("20231127044538_DbMigration")]
+    [Migration("20231128005226_DbMigration")]
     partial class DbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

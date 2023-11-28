@@ -33,7 +33,7 @@ namespace EasyPos.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
-                optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=EasyPOS;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=psa1-easy-pos.c7bwrxkufzke.us-east-1.rds.amazonaws.com;Database=EasyPOS;User Id=admin;Password=R4M#HKp(x$ZY!iCPN1KlruJxeP#1;");
         }
 
         public virtual DbSet<CategoriaProducto> CategoriaProducto { get; set; }
