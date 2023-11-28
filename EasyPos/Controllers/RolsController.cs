@@ -25,7 +25,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromBody] Rol rol)
+        public ActionResult Create( Rol rol)
         {
             if (ModelState.IsValid)
             {
@@ -54,7 +54,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([FromBody] Rol rol)
+        public ActionResult Edit(Rol rol)
         {
             if (ModelState.IsValid)
             {

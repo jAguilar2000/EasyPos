@@ -12,6 +12,26 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Home\About.cshtml" />
+    <None Include="Views\Home\Contact.cshtml" />
+    <None Include="Views\Home\Index.cshtml" />
+    <None Include="Views\Rols\Create.cshtml" />
+    <None Include="Views\Rols\Delete.cshtml" />
+    <None Include="Views\Rols\Details.cshtml" />
+    <None Include="Views\Rols\Edit.cshtml" />
+    <None Include="Views\Rols\Index.cshtml" />
+    <None Include="Views\Usuarios\Create.cshtml" />
+    <None Include="Views\Usuarios\Details.cshtml" />
+    <None Include="Views\Usuarios\Edit.cshtml" />
+    <None Include="Views\Usuarios\Index.cshtml" />
+    <None Include="Views\Usuarios\_AgregarRol.cshtml" />
+    <None Include="Views\Usuarios\_EditarRol.cshtml" />
+    <None Include="Views\Usuarios\_RolesUsuario.cshtml" />
+    <None Include="Views\Web.config" />
+    <None Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.25" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.23">
       <PrivateAssets>all</PrivateAssets>

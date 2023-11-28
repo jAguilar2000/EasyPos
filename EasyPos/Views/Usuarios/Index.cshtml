@@ -97,7 +97,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body" id="EditarTipoEvaluacion">
-                                                        @Html.Partial("Edit", new EasyPos.Models.Usuario() { UsuarioId = item.UsuarioId, NombreIdentificador=item.NombreIdentificador, Nombre = item.Nombre, Email = item.Email, Password = item.Password})
+                                                        @Html.Partial("Edit", new EasyPos.Models.Usuario() { UsuarioId = item.UsuarioId, NombreIdentificador=item.NombreIdentificador, Nombre = item.Nombre, Email = item.Email, Password = item.Password, Estado = item.Estado})
                                                     </div>
                                                 </div>
                                             </div>
@@ -133,3 +133,6 @@
         </div>
     </div>
 </div>
+
+@section Scripts{
+        }

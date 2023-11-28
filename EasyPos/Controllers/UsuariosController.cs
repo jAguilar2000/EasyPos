@@ -15,9 +15,9 @@ namespace EasyPos.Controllers
             this.db = db;
         }
 
-        public ActionResult Index()
+        public async Task< IActionResult> Index()
         {
-            return View(db.Usuario.ToList());
+            return View(await db.Usuario.ToListAsync());
         }
 
         public ActionResult Details(int? id)
@@ -33,9 +33,10 @@ namespace EasyPos.Controllers
             }
             var viewModel = new UsuarioVM
             {
-                Usuario = usuarios
+                Usuario = usuarios,
+                UsuarioRol = db.UsuarioRol.Include(x => x.Rol).Where(x => x.UsuarioId == id).ToList(),
             };
-            ViewBag.RolId = new SelectList(db.Rol.Where(x => x.Estado), "rolId", "descripcion");
+            ViewBag.RolId = new SelectList(db.Rol.Where(x => x.Estado), "RolId", "Descripcion");
             ViewBag.userId = id;
             return View(viewModel);
         }
@@ -47,7 +48,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([FromBody] Usuario usuario)
+        public ActionResult Create( Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +77,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([FromBody] Usuario usuario)
+        public ActionResult Edit(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
@@ -88,14 +89,8 @@ namespace EasyPos.Controllers
         }
 
         [HttpPost]
-        //[ValidateAntiForgeryToken]
-        public ActionResult CreateRolUsuario([FromBody] UsuarioRol usuarioRol)
+        public ActionResult CreateRolUsuario(UsuarioRol usuarioRol)
         {
-            //var permisoRol = Validate.ValidatePermission(nameof(UsuariosController), "editar");
-            //if (!permisoRol.editar && !permisoRol.agregar)
-            //{
-            //    return RedirectToAction("Details", "Usuarios", new { id = usuarioRol.UsuarioId });
-            //}
             if (ModelState.IsValid)
             {
                 var exists = db.UsuarioRol.AsNoTracking().Where(x => x.RolId == usuarioRol.RolId && x.UsuarioId == usuarioRol.UsuarioId).FirstOrDefault();

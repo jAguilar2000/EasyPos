@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EasyPos.Models
 {
@@ -11,7 +12,9 @@ namespace EasyPos.Models
         public int RolId { get; set; }
         public bool Estado { get; set; }
 
-        public virtual Rol Rol { get; set; } = new Rol();
-        public virtual Usuario Usuario { get; set; } = new Usuario();
+        //[ForeignKey("RolId")]
+        public virtual Rol? Rol { get; set; } //= new Rol();
+        //[ForeignKey("UsuarioId")]
+        public virtual Usuario? Usuario { get; set; } //= new Usuario();
     }
 }
