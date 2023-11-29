@@ -1,0 +1,88 @@
+﻿@model EasyPos.Models.OrdenCompra
+
+@{
+    ViewData["Title"] = "Crear Orden";
+}
+
+@* <h1>Crear Orden</h1> *@
+
+<h4>Orden de Compra</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="ProveedorId" class="control-label">Proveedor</label>
+                    <select asp-for="ProveedorId" class="form-control" asp-items="ViewBag.ProveedorId"></select>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Fecha" class="control-label">Fecha</label>
+                    <input asp-for="Fecha" class="form-control" />
+                    <span asp-validation-for="Fecha" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="SubTotal" class="control-label">SubTotal</label>
+                    <input asp-for="SubTotal" class="form-control" />
+                    <span asp-validation-for="SubTotal" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Isv" class="control-label">ISV</label>
+                    <input asp-for="Isv" class="form-control" />
+                    <span asp-validation-for="Isv" class="text-danger"></span>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <label asp-for="UsuarioId" class="control-label">Usuario</label>
+                    <select asp-for="UsuarioId" class="form-control" asp-items="ViewBag.UsuarioId"></select>
+                </div>
+
+                <div class="col-md-6">
+                    <input type="submit" value="Registrar" class="btn btn-primary" />
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Registrar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+
+
+</div>
+@* 
+    <div class="col-md-6">
+        <!-- Llamada a la vista parcial -->
+        <partial name="_CreateDetalleOrdenCompra" />
+    </div> *@
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#roles" aria-current="page">Detalle Compra</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="roles" class="tab-pane active">
+        @Html.Partial("_CreateDetalleOrdenCompra", Model)
+    </div>
+</div>
+
+<hr />
+
+<div>
+    <a asp-action="Index">Regresar al Listado</a>
+</div>

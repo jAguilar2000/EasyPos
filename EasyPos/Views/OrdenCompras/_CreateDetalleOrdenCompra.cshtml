@@ -1,0 +1,75 @@
+﻿@model EasyPos.Models.OrdenCompraDetalle
+
+@* <h4>OrdenCompraDetalle</h4> *@
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card border-info">
+            <div class="card-body p-2">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group mb-0">
+                            <label asp-for="ProductoId" class="control-label">Producto</label>
+                            <select asp-for="ProductoId" class="form-control" asp-items="ViewBag.ProductoId"></select>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label asp-for="Cantidad" class="control-label">Cantidad</label>
+                            <input asp-for="Cantidad" class="form-control" />
+                            <span asp-validation-for="Cantidad" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label asp-for="Costo" class="control-label">Costo</label>
+                            <input asp-for="Costo" class="form-control" />
+                            <span asp-validation-for="Costo" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label asp-for="Isv" class="control-label">ISV</label>
+                            <input asp-for="Isv" class="form-control" />
+                            <span asp-validation-for="Isv" class="text-danger"></span>
+                        </div>
+                    </div> 
+                    
+                    <div class="col-sm-2">
+                        <div class="form-group mb-0">
+                            <label asp-for="btn" class="control-label"></label>
+                            <button id="btnAgregarCompra" class="btn btn-primary btn-sm float-right">Agregar  </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+
+<hr />
+<div class="x_content">
+    <div class="row">
+       <div class="col-sm-12">
+          <div class="card-box table-responsive">
+               <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Id. Producto</th>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Costo</th>
+                            <th>Cantidad</th>
+                            <th>ISV</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+               </table>
+          </div>
+       </div>
+    </div>
+</div>
