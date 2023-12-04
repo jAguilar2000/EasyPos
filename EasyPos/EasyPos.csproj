@@ -132,6 +132,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
+    <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -190,6 +191,7 @@
     <Compile Include="Models\UsuarioRol.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\InventarioVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -1967,6 +1969,9 @@
     <Content Include="Views\Usuarios\_RolesUsuario.cshtml" />
     <Content Include="Views\Usuarios\_EditarRol.cshtml" />
     <Content Include="Views\Usuarios\_AgregarRol.cshtml" />
+    <Content Include="Views\inventario\Index.cshtml" />
+    <Content Include="Views\inventario\Create.cshtml" />
+    <Content Include="Views\inventario\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

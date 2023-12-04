@@ -1,0 +1,73 @@
+﻿@model EasyPos.Models.Inventario
+
+@using (Html.BeginForm("Create", "Inventario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.EditorFor(model => model.productoId, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "ProductoId", autocomplete = "off" } })
+        <span class="fa fa-box-open form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.productoId, "", new { @class = "text-danger" })
+    </div>
+
+    @*<div class="form-group col-md-6 col-sm-6 has-feedback">
+            @foreach (var item in Model.ProductoList)
+            {
+                @Html.DisplayFor(modelItem => item)
+            }
+            <span class="fa fa-box-open form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.Producto.descripcion, "", new { @class = "text-danger" })
+        </div>*@
+    @*<div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.LabelFor(model => model.Producto.descripcion, "Seleccione un producto")
+        @Html.DropDownListFor(model => model.Producto.descripcion,
+                              new SelectList(Model.Producto.descripcion, "descripcion", "descripcion"),
+                              "-- Seleccione un producto --",
+                              new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.Producto.descripcion, "", new { @class = "text-danger" })
+    </div>*@
+
+
+
+    <div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.EditorFor(model => model.stockMin, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Mínimo", autocomplete = "off" } })
+        <span class="fa fa-box form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.stockMin, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.EditorFor(model => model.stockMax, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Máximo", autocomplete = "off" } })
+        <span class="fa fa-boxes form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.stockMax, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.EditorFor(model => model.stockDisponible, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Disponible", autocomplete = "off" } })
+        <span class="fa fa-dolly form-control-feedback left" aria-hidden="true"></span>
+        @Html.ValidationMessageFor(model => model.stockDisponible, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group col-md-6 col-sm-6 has-feedback">
+        @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Estado"} })
+        <span class="fa fa-square form-control-feedback left" aria-hidden="true"></span> Estado
+        @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-success btn-sm">
+                <i class="fa fa-save"></i> Guardar
+            </button>
+        </div>
+    </div>
+</div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
