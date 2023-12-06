@@ -25,7 +25,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Rol rol)
+        public ActionResult Create(Rol rol)
         {
             if (ModelState.IsValid)
             {

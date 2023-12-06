@@ -15,7 +15,7 @@ namespace EasyPos.Controllers
             this.db = db;
         }
 
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             return View(await db.Usuario.ToListAsync());
         }
@@ -48,7 +48,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Usuario usuario)
+        public ActionResult Create(Usuario usuario)
         {
             if (ModelState.IsValid)
             {
