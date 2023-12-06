@@ -9,12 +9,12 @@
     <div class="col-md-12 col-sm-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Lista de Roles</h2>
+                <h2>Lista de Permisos</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
                         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalCreate">
                             <i class="ace-icon fa fa-plus-circle bigger-120"></i>
-                            Registrar Rol
+                            Registrar Permiso
                         </button>
                     </li>
                     <li>
@@ -34,7 +34,7 @@
                                             Id
                                         </th>
                                         <th>
-                                            Nombre Rol
+                                            Nombre Permiso
                                         </th>
                                         <th>
                                             Estado
@@ -75,12 +75,12 @@
                                             <div class="modal-dialog modal-lg">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="myModalLabel"> Editar Rol</h4>
+                                                        <h4 class="modal-title" id="myModalLabel"> Editar Permiso</h4>
                                                         <button type="button" class="close" data-dismiss="modal">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
-                                                    <div class="modal-body" id="EditarTipoEvaluacion">
+                                                    <div class="modal-body">
                                                         @Html.Partial("Edit", new EasyPos.Models.Rol() { RolId = item.RolId, Descripcion = item.Descripcion, Estado = item.Estado })
                                                     </div>
                                                 </div>
@@ -103,7 +103,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel"> Registrar Nuevo Rol</h5>
+                <h5 class="modal-title" id="myModalLabel"> Registrar Nuevo Permiso</h5>
                 <button type="button" class="close" data-dismiss="modal">
                     <span aria-hidden="true">&times;</span>
                 </button>

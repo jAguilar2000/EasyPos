@@ -1,4 +1,4 @@
-﻿@model EasyPos.Models.ViewModels.UsuarioVM
+﻿@*@model EasyPos.Models.ViewModels.UsuarioVM*@
 
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
@@ -23,10 +23,22 @@
                                 <thead>
                                     <tr>
                                         <th>
-                                            Permiso
+                                            Id
                                         </th>
                                         <th>
-                                            Estado
+                                            Producto
+                                        </th>
+                                        <th>
+                                            Cantidad
+                                        </th>
+                                        <th>
+                                            Precio
+                                        </th>
+                                        <th>
+                                            Isv
+                                        </th>
+                                        <th>
+                                            SubTotal
                                         </th>
                                         <th>
                                             Acciones
@@ -34,7 +46,43 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach (var item in Model.Usuario.UsuarioRol)
+                                    <tr>
+                                        <td>152</td>
+                                        <td>Chuleta de cerdo</td>
+                                        <td>2.53</td>
+                                        <td>32.60</td>
+                                        <td>12.37</td>
+                                        <td>82.48</td>
+                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>425</td>
+                                        <td>Carne molida</td>
+                                        <td>1.05</td>
+                                        <td>45</td>
+                                        <td>7.09</td>
+                                        <td>47.25</td>
+                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>483</td>
+                                        <td>Arroz</td>
+                                        <td>5.30</td>
+                                        <td>20</td>
+                                        <td>15.9</td>
+                                        <td>106</td>
+                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>456</td>
+                                        <td>Pepsi 3Lt</td>
+                                        <td>4</td>
+                                        <td>55</td>
+                                        <td>33</td>
+                                        <td>220</td>
+                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
+                                    </tr>
+                                    @*@foreach (var item in Model.Usuario.UsuarioRol)
                                     {
                                         <tr data-rol="@item.RolId">
                                             <td>
@@ -78,7 +126,7 @@
                                                 </div>
                                             </div>
                                         </tr>
-                                    }
+                                    }*@
                                 </tbody>
                             </table>
                         </div>
@@ -90,7 +138,7 @@
 </div>
 
 <!-- Modal Registrar Nuevos Roles-->
-
+@*
 <div id="modalCreate" class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -109,7 +157,9 @@
                     <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Agregar</button>
                 </div>
             }
-            @{Html.EndForm();}
+            @{
+                Html.EndForm();
+            }
         </div>
     </div>
-</div>
+</div>*@
