@@ -12,10 +12,8 @@
                 <h2>Lista de Factura</h2>
                 <ul class="nav navbar-right panel_toolbox">
                     <li>
-                        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalCreate">
-                            <i class="ace-icon fa fa-plus-circle bigger-120"></i>
-                            Registrar Factura
-                        </button>
+                        <a type="button" class="btn btn-primary btn-sm" href="@Url.Action("Create")"> <i class="ace-icon fa fa-plus-circle bigger-120"></i> Registrar Factura</a>
+
                     </li>
                     <li>
                         <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
@@ -58,214 +56,49 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>0100011</td>
-                                        <td>Consumidor Final</td>
-                                        <td>11/11/2023</td>
-                                        <td>85.00</td>
-                                        <td>15.00</td>
-                                        <td>100.00 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>0100010</td>
-                                        <td>Consumidor Final</td>
-                                        <td>11/11/2023</td>
-                                        <td>298.35</td>
-                                        <td>52.65</td>
-                                        <td>351.00 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>0100009</td>
-                                        <td>Francisco Galdames</td>
-                                        <td>10/11/2023</td>
-                                        <td>808.06</td>
-                                        <td>142.60</td>
-                                        <td>950.66 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>0100008</td>
-                                        <td>Consumidor Final</td>
-                                        <td>10/11/2023</td>
-                                        <td>9.34</td>
-                                        <td>1.65</td>
-                                        <td>10.99 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>0100007</td>
-                                        <td>Fabio Martinez</td>
-                                        <td>09/11/2023</td>
-                                        <td>21.56</td>
-                                        <td>3.80</td>
-                                        <td>25.36 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>0100006</td>
-                                        <td>Consumidor Final</td>
-                                        <td>10/11/2023</td>
-                                        <td>4787.48</td>
-                                        <td>844.85</td>
-                                        <td>5632.33</td>
-                                        <td>
-                                            <apan class="badge badge-danger">Inactivo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>0100005</td>
-                                        <td>Kevin Alonzo Valle</td>
-                                        <td>08/11/2023</td>
-                                        <td>102.22</td>
-                                        <td>18.04</td>
-                                        <td>120.26</td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>8</td>
-                                        <td>0100004</td>
-                                        <td>Consumidor Final</td>
-                                        <td>08/11/2023</td>
-                                        <td>169.42</td>
-                                        <td>29.90</td>
-                                        <td>199.32</td>
-                                        <td>
-                                            <apan class="badge badge-danger">Inactivo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>9</td>
-                                        <td>0100003</td>
-                                        <td>Jafet Aguilar</td>
-                                        <td>08/11/2023</td>
-                                        <td>104.83</td>
-                                        <td>18.50</td>
-                                        <td>123.33</td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>10</td>
-                                        <td>0100002</td>
-                                        <td>Consumidor Final</td>
-                                        <td>07/11/2023</td>
-                                        <td>254.15</td>
-                                        <td>44.85</td>
-                                        <td>299.00</td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>11</td>
-                                        <td>0100001</td>
-                                        <td>Jafet Aguilar</td>
-                                        <td>07/11/2023</td>
-                                        <td>123.24</td>
-                                        <td>21.75</td>
-                                        <td>144.99 </td>
-                                        <td>
-                                            <apan class="badge badge-success">Activo</apan>
-                                        </td>
-                                        <td>
-                                            <a href="#" class="btn btn-warning btn-sm" title="Ver Detalles"><i class="fa fa-list-ul"></i></a>
-                                        </td>
-                                    </tr>
 
-                                    @*@foreach (var item in Model)
+                                    @foreach (var item in Model)
                                     {
-                                    <tr>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.FacturaId)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.NumFactura)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.nombreCliente)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.FechaCrea)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.SubTotal)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.Isv)
-                                    </td>
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.Total)
-                                    </td>
-                                    <td>
-                                    @if (item.Activo)
-                                    {
-                                    <apan class="badge badge-success">Activo</apan>
-                                    }
-                                    else
-                                    {
-                                    <apan class="badge badge-danger">Inactivo</apan>
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FacturaId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.NumFactura)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.nombreCliente)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.FechaCrea)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SubTotal)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Isv)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Total)
+                                            </td>
+                                            <td>
+                                                @if (item.Activo)
+                                                {
+                                                    <apan class="badge badge-success">Activo</apan>
+                                                }
+                                                else
+                                                {
+                                                    <apan class="badge badge-danger">Inactivo</apan>
 
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("PreviewFactura", "Factura", new { facturaId = item.FacturaId })" class="btn btn-primary btn-sm" title="Imprimir">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
                                     }
-                                    </td>
-                                    <td>
-                                    <a href="@Url.Action("Details", "Usuarios", new { id = item.FacturaId })" class="btn btn-primary btn-sm" title="Ver Detalles">
-                                    <i class="fa fa-chevron-circle-right"></i>
-                                    </a>
-                                    </td>
-                                    </tr>
-                                    }*@
                                 </tbody>
 
                             </table>

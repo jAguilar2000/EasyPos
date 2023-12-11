@@ -1,57 +1,40 @@
-﻿@*@model EasyPos.Models.ViewModels.UsuarioVM*@
+﻿@model EasyPos.Models.FacturaDetalle
 
 <div class="row">
     <div class="col-md-12 col-sm-12 ">
         <div class="x_panel">
             <div class="x_content">
                 <div class="form-horizontal">
+                    <div class="item form-group col-md-12 col-sm-12 has-feedback">
+                        <span class="fa fa-gear form-control-feedback left" aria-hidden="true"></span>
+                    </div>
+
                     <div class="form-group col-md-4 col-sm-4 has-feedback">
-                        <select class="select2 form-control has-feedback-left">
-                            <option>Costilla de cerdo</option>
-                            <option>Joshua Aguilar</option>
-                            <option>Francisco Galdames</option>
-                        </select>
+                        @Html.DropDownList("productoId", null, "Seleccione...",  new { @class = "select2 form-control has-feedback-left" })
+                        @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
                         <span class="fa fa-shopping-bag form-control-feedback left" aria-hidden="true"></span>
-                        @*@Html.ValidationMessageFor(model => model.Usuario.NombreIdentificador, "", new { @class = "text-danger" })*@
                     </div>
+
                     <div class="form-group col-md-2 col-sm-2 has-feedback">
-                        <input class="form-control has-feedback-left" />
+                        <input id="cantidad" class="form-control has-feedback-left" />
                         <span class="fa fa-sort-amount-asc form-control-feedback left" aria-hidden="true"></span>
-                        @*@Html.ValidationMessageFor(model => model.Usuario.NombreIdentificador, "", new { @class = "text-danger" })*@
                     </div>
+
                     <div class="form-group col-md-2 col-sm-2 has-feedback">
-                        <input class="form-control has-feedback-left" value="45.50" disabled/>
+                        <input class="form-control has-feedback-left" id="precioProd" disabled/>
                         <span class="fa fa-money form-control-feedback left" aria-hidden="true"></span>
-                        @*@Html.ValidationMessageFor(model => model.Usuario.NombreIdentificador, "", new { @class = "text-danger" })*@
                     </div>
                     <div class="form-group col-md-2 col-sm-2 has-feedback">
-                        <input class="form-control has-feedback-left" value="15.00" disabled/>
+                        <input class="form-control has-feedback-left" id="isvProd" disabled/>
                         <span class="fa fa-percent form-control-feedback left" aria-hidden="true"></span>
-                        @*@Html.ValidationMessageFor(model => model.Usuario.NombreIdentificador, "", new { @class = "text-danger" })*@
                     </div>
                     <div class="form-group col-md-2 col-sm-2 has-feedback">
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalCreate">
+                        <button type="button" id="btnAgregar" class="btn btn-info btn-sm" >
                             <i class="ace-icon fa fa-plus-circle bigger-120"></i>
                             Agregar
                         </button>
                     </div>
                 </div>
-                @*<h2></h2>
-                <ul class="nav navbar-right panel_toolbox">
-                    <li>
-                        <select class="select2 form-control has-feedback-left">
-                            <option>Costilla de cerdo</option>
-                            <option>Joshua Aguilar</option>
-                            <option>Francisco Galdames</option>
-                        </select>
-                    </li>
-                    <li>
-                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalCreate">
-                            <i class="ace-icon fa fa-plus-circle bigger-120"></i>
-                            Agregar
-                        </button>
-                    </li>
-                </ul>*@
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -85,93 +68,12 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>152</td>
-                                        <td>Chuleta de cerdo</td>
-                                        <td>2.53</td>
-                                        <td>32.60</td>
-                                        <td>12.37</td>
-                                        <td>82.48</td>
-                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>425</td>
-                                        <td>Carne molida</td>
-                                        <td>1.05</td>
-                                        <td>45.00</td>
-                                        <td>7.09</td>
-                                        <td>47.25</td>
-                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>483</td>
-                                        <td>Arroz</td>
-                                        <td>5.30</td>
-                                        <td>20.00</td>
-                                        <td>15.9</td>
-                                        <td>106.00</td>
-                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>456</td>
-                                        <td>Pepsi 3Lt</td>
-                                        <td>4.00</td>
-                                        <td>55.00</td>
-                                        <td>33.00</td>
-                                        <td>220.00</td>
-                                        <td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>
-                                    </tr>
-                                    @*@foreach (var item in Model.Usuario.UsuarioRol)
-                                    {
-                                    <tr data-rol="@item.RolId">
-                                    <td>
-                                    @Html.DisplayFor(modelItem => item.Rol.Descripcion)
-                                    </td>
-                                    <td>
-                                    @if (item.Estado)
-                                    {
-                                    <apan class="badge badge-success">Activo</apan>
-                                    }
-                                    else
-                                    {
-                                    <apan class="badge badge-danger">Inactivo</apan>
-                                    }
-                                    </td>
-                                    <td>
-                                    <a class="btn btn-warning btn-sm" data-rel="tooltip" id="btnEditarRol" title="Editar" data-toggle="modal" data-target="#Editar_@item.UsuarioRolId">
-                                    <i class="fa fa-edit"></i>
-                                    </a>
-                                    </td>
-                                    <!-- Modal Editar Roles-->
-                                    <div id="Editar_@item.UsuarioRolId" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                    <div class="modal-content">
-                                    <div class="modal-header">
-                                    <h4 class="modal-title" id="myModalLabel"> Editar Permiso</h4>
-                                    <button type="button" class="close" data-dismiss="modal">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                    </div>
-                                    @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
-                                    {
-                                    <div class="modal-body" id="EditarTipoEvaluacion">
-                                    @Html.Partial("_EditarRol", new EasyPos.Models.UsuarioRol() { UsuarioRolId = item.UsuarioRolId, UsuarioId = item.UsuarioId, RolId = item.RolId, Estado = item.Estado })
-                                    </div>
-                                    <div class="modal-footer">
-                                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> Editar</button>
-                                    </div>
-                                    }
-                                    </div>
-                                    </div>
-                                    </div>
-                                    </tr>
-                                    }*@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="4" align="center"><h5>Total a pagar: <strong> 524.09</strong></h5></td>
-                                        <td><strong> 68.36</strong></td>
-                                        <td><strong> 455.73</strong></td>
+                                        <td colspan="4" align="center"><h5>Total a pagar: <strong> 0.00</strong></h5></td>
+                                        <td><strong> 0.00</strong></td>
+                                        <td><strong> 0.00</strong></td>
                                         <td><strong></strong></td>
                                     </tr>
                                 </tfoot>
@@ -183,30 +85,3 @@
         </div>
     </div>
 </div>
-
-<!-- Modal Registrar Nuevos Roles-->
-@*
-<div id="modalCreate" class="modal fade bs-example-modal-lg" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel"> Asignar Permiso</h5>
-                <button type="button" class="close" data-dismiss="modal">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            @using (Html.BeginForm("CreateRolUsuario", "Usuarios", FormMethod.Post))
-            {
-                <div class="modal-body">
-                    @Html.Partial("_AgregarRol", new EasyPos.Models.UsuarioRol() { UsuarioId = ViewBag.userId })
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success btn-sm"><i class="fa fa-plus-circle"></i> Agregar</button>
-                </div>
-            }
-            @{
-                Html.EndForm();
-            }
-        </div>
-    </div>
-</div>*@

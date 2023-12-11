@@ -24,10 +24,10 @@ namespace EasyPos.Models
         public int? UsuarioModificaId { get; set; }
         public bool Activo { get; set; }
 
-        public virtual Cliente Cliente { get; set; } = new Cliente();
-        public virtual Estado Estados { get; set; } = new Estado();
+        public virtual Cliente? Cliente { get; set; } 
+        public virtual Estado? Estados { get; set; } 
         public virtual ICollection<FacturaDetalle> FacturaDetalle { get; set; }
-        public virtual Usuario UsuarioCrea { get; set; } = new Usuario();
+        public virtual Usuario? UsuarioCrea { get; set; }
         public virtual Usuario? UsuarioModifica { get; set; }
     }
 }
