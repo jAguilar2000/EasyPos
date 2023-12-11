@@ -22,6 +22,7 @@ namespace EasyPos.Controllers
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "inventarioId,productoId,stockDisponible,stockMin,stockMax,estado")] Inventario inventario)

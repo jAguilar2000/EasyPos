@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KardexController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\InventarioController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
@@ -170,6 +171,9 @@
     <Compile Include="Models\Inventario.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\kardex.cs">
+      <DependentUpon>EasyPos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\OrdenCompra.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
@@ -191,6 +195,7 @@
     <Compile Include="Models\UsuarioRol.cs">
       <DependentUpon>EasyPos.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ViewModels\KardexVM.cs" />
     <Compile Include="Models\ViewModels\InventarioVM.cs" />
     <Compile Include="Models\ViewModels\UsuarioVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1972,6 +1977,7 @@
     <Content Include="Views\inventario\Index.cshtml" />
     <Content Include="Views\inventario\Create.cshtml" />
     <Content Include="Views\inventario\Edit.cshtml" />
+    <Content Include="Views\kardex\kardex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1ea07d845cb1408ba69d8aab035b7d10" Name="Diagram1">
+      <Diagram DiagramId="1ea07d845cb1408ba69d8aab035b7d10" Name="Diagram1" ZoomLevel="55">
         <EntityTypeShape EntityType="EasyPosModel.CategoriaProducto" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyPosModel.Cliente" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="EasyPosModel.Estados" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
@@ -33,6 +33,7 @@
         <AssociationConnector Association="EasyPosModel.FK_Producto_OrdenCompraDetalle_productoId" ManuallyRouted="false" />
         <AssociationConnector Association="EasyPosModel.FK_Rol_UsuarioRol_rolId" ManuallyRouted="false" />
         <AssociationConnector Association="EasyPosModel.FK_Usuario_UsuarioRol_usuarioId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="EasyPosModel.kardex" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="EasyPosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="EasyPosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CategoriaProducto">
           <Key>
             <PropertyRef Name="categoriaId" />
@@ -149,6 +149,23 @@
           <Property Name="usuarioId" Type="int" Nullable="false" />
           <Property Name="rolId" Type="int" Nullable="false" />
           <Property Name="estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'EasyPos.dbo.kardex' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="kardex">
+          <Key>
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="Compra" />
+            <PropertyRef Name="Venta" />
+          </Key>
+          <Property Name="Fecha" Type="datetime" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Compra" Type="int" Nullable="false" />
+          <Property Name="Venta" Type="int" Nullable="false" />
+          <Property Name="Acumulado" Type="int" />
         </EntityType>
         <Association Name="FK_CategoriaProducto_Producto_categoriaId">
           <End Role="CategoriaProducto" Type="Self.CategoriaProducto" Multiplicity="1" />
@@ -344,6 +361,16 @@
           <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kardex" EntityType="Self.kardex" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [kardex].[Fecha] AS [Fecha], 
+    [kardex].[Categoria] AS [Categoria], 
+    [kardex].[descripcion] AS [descripcion], 
+    [kardex].[Compra] AS [Compra], 
+    [kardex].[Venta] AS [Venta], 
+    [kardex].[Acumulado] AS [Acumulado]
+    FROM [dbo].[kardex] AS [kardex]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_CategoriaProducto_Producto_categoriaId" Association="Self.FK_CategoriaProducto_Producto_categoriaId">
             <End Role="CategoriaProducto" EntitySet="CategoriaProducto" />
             <End Role="Producto" EntitySet="Producto" />
@@ -405,8 +432,7 @@
             <End Role="UsuarioRol" EntitySet="UsuarioRol" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="EasyPosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -839,7 +865,23 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="UsuarioRol" EntitySet="UsuarioRol" />
           </AssociationSet>
+          <EntitySet Name="kardex" EntityType="EasyPosModel.kardex" />
         </EntityContainer>
+        <EntityType Name="kardex">
+          <Key>
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="descripcion" />
+            <PropertyRef Name="Compra" />
+            <PropertyRef Name="Venta" />
+          </Key>
+          <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Compra" Type="Int32" Nullable="false" />
+          <Property Name="Venta" Type="Int32" Nullable="false" />
+          <Property Name="Acumulado" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1001,6 +1043,18 @@
                 <ScalarProperty Name="usuarioId" ColumnName="usuarioId" />
                 <ScalarProperty Name="rolId" ColumnName="rolId" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kardex">
+            <EntityTypeMapping TypeName="EasyPosModel.kardex">
+              <MappingFragment StoreEntitySet="kardex">
+                <ScalarProperty Name="Acumulado" ColumnName="Acumulado" />
+                <ScalarProperty Name="Venta" ColumnName="Venta" />
+                <ScalarProperty Name="Compra" ColumnName="Compra" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

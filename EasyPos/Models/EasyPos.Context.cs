@@ -38,5 +38,6 @@ namespace EasyPos.Models
         public virtual DbSet<Rol> Rol { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<UsuarioRol> UsuarioRol { get; set; }
+        public virtual DbSet<kardex> kardex { get; set; }
     }
 }

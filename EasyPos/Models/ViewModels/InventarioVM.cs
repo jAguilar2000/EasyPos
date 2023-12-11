@@ -19,4 +19,5 @@ namespace EasyPos.Models.ViewModels
 
      
     }
+
 }
