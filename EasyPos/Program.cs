@@ -1,10 +1,16 @@
 using EasyPos.Models;
+using EasyPos.Utils;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddSession();
+builder.Services.AddHttpContextAccessor(); // Agrega el IHttpContextAccessor
+
+builder.Services.AddScoped<SessionHelper>();
 
 builder.Services.AddDbContext<EasyPosDb>(a => a.UseSqlServer(builder.Configuration.GetConnectionString("EasyPOS")));
 //builder.Services.AddDbContext<EasyPosDb>();
@@ -27,6 +33,7 @@ app.UseRouting();
 app.UseAuthorization();
 
 app.MapRazorPages();
+app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");

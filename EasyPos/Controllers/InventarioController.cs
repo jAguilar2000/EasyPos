@@ -1,42 +1,41 @@
 ﻿using EasyPos.Models;
 using EasyPos.Utils;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace EasyPos.Controllers
 {
-    public class RolsController : Controller
+    public class InventarioController : Controller
     {
         private readonly EasyPosDb db;
         private readonly SessionHelper _sessionHelper;
-
-        public RolsController(EasyPosDb db, SessionHelper sessionHelper)
+        public InventarioController(EasyPosDb db, SessionHelper sessionHelper)
         {
             this.db = db;
             _sessionHelper = sessionHelper ?? throw new ArgumentNullException(nameof(sessionHelper));
         }
-
-        public ActionResult Index()
+        public async Task<IActionResult> Index()
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
-            bool acceso = listaRecuperada.Any(x => x.ToString() == "Permisos");
+            bool acceso = listaRecuperada.Any(x => x.ToString() == "Inventario");
             if (acceso)
             {
-                return View(db.Rol.ToList());
+                ViewBag.productoId = new SelectList(db.Producto.Where(x => x.Estado == true), "ProductoId", "Descripcion");
+                return View(await db.Inventario.Include(x => x.Producto).ToListAsync());
             }
             else
             {
                 return RedirectToPage("/Privacy");
             }
-            
         }
 
         public ActionResult Create()
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
-            bool acceso = listaRecuperada.Any(x => x.ToString() == "Permisos");
+            bool acceso = listaRecuperada.Any(x => x.ToString() == "Inventario");
             if (acceso)
             {
                 return View();
@@ -47,24 +46,25 @@ namespace EasyPos.Controllers
             }
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Rol rol)
+        public ActionResult Create(Inventario inventario)
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
-            bool acceso = listaRecuperada.Any(x => x.ToString() == "Permisos");
+            bool acceso = listaRecuperada.Any(x => x.ToString() == "Inventario");
             if (acceso)
             {
                 if (ModelState.IsValid)
                 {
-                    rol.Estado = true;
-                    db.Rol.Add(rol);
+                    inventario.Estado = true;
+                    db.Inventario.Add(inventario);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
 
-                return View(rol);
+                return View(inventario);
             }
             else
             {
@@ -76,19 +76,20 @@ namespace EasyPos.Controllers
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
-            bool acceso = listaRecuperada.Any(x => x.ToString() == "Permisos");
+            bool acceso = listaRecuperada.Any(x => x.ToString() == "Inventario");
             if (acceso)
             {
                 if (id == null)
                 {
                     return BadRequest();
                 }
-                Rol rol = db.Rol.Find(id);
-                if (rol == null)
+                Inventario inventario = db.Inventario.Find(id);
+                if (inventario == null)
                 {
                     return NotFound();
                 }
-                return View(rol);
+                ViewBag.productoId = new SelectList(db.Producto.Where(x => x.Estado == true), "ProductoId", "Descripcion", inventario.ProductoId);
+                return View(inventario);
             }
             else
             {
@@ -98,26 +99,25 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Rol rol)
+        public ActionResult Edit(Inventario inventario)
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
-            bool acceso = listaRecuperada.Any(x => x.ToString() == "Permisos");
+            bool acceso = listaRecuperada.Any(x => x.ToString() == "Inventario");
             if (acceso)
             {
                 if (ModelState.IsValid)
                 {
-                    db.Entry(rol).State = EntityState.Modified;
+                    db.Entry(inventario).State = EntityState.Modified;
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
-                return View(rol);
+                return View(inventario);
             }
             else
             {
                 return RedirectToPage("/Privacy");
             }
         }
-
     }
 }

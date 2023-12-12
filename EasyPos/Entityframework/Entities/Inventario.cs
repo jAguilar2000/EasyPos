@@ -13,6 +13,6 @@ namespace EasyPos.Models
         public int StockMax { get; set; }
         public bool Estado { get; set; }
 
-        public virtual Producto Producto { get; set; } = new Producto();
+        public virtual Producto? Producto { get; set; }
     }
 }

@@ -1,0 +1,82 @@
+﻿@model EasyPos.Models.Inventario
+
+@using (Html.BeginForm("Create", "Inventario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.DropDownList("productoId", null, "Seleccione...",  new { @class = "select2 form-control has-feedback-left" })
+            @*@Html.EditorFor(model => model.ProductoId, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "ProductoId", autocomplete = "off" } })*@
+            <span class="fa fa-box-open form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+        </div>
+
+        @*<div class="form-group col-md-6 col-sm-6 has-feedback">
+    @foreach (var item in Model.ProductoList)
+    {
+    @Html.DisplayFor(modelItem => item)
+    }
+    <span class="fa fa-box-open form-control-feedback left" aria-hidden="true"></span>
+    @Html.ValidationMessageFor(model => model.Producto.descripcion, "", new { @class = "text-danger" })
+    </div>*@
+        @*<div class="form-group col-md-6 col-sm-6 has-feedback">
+    @Html.LabelFor(model => model.Producto.descripcion, "Seleccione un producto")
+    @Html.DropDownListFor(model => model.Producto.descripcion,
+    new SelectList(Model.Producto.descripcion, "descripcion", "descripcion"),
+    "-- Seleccione un producto --",
+    new { @class = "form-control" })
+    @Html.ValidationMessageFor(model => model.Producto.descripcion, "", new { @class = "text-danger" })
+    </div>*@
+
+
+
+        @*<div class="form-horizontal">*@
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockMin, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Mínimo", autocomplete = "off" } })
+            <span class="fa fa-box form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockMin, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockMax, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Máximo", autocomplete = "off" } })
+            <span class="fa fa-boxes form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockMax, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockDisponible, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Disponible", autocomplete = "off" } })
+            <span class="fa fa-dolly form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockDisponible, "", new { @class = "text-danger" })
+        </div>
+
+        @*<div class="form-group col-md-6 col-sm-6 has-feedback">
+    @Html.EditorFor(model => model.estado, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Estado" } })
+    <span class="fa fa-square form-control-feedback left" aria-hidden="true"></span> Estado
+    @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+    </div>*@
+
+        @*<div class="checkbox">
+            <label>
+                @Html.CheckBoxFor(model => model.Estado, new { @class = "flat", @checked = "checked" }) Estado
+            </label>
+            @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa fa-save"></i> Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+
+}
+
+@* @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+} *@

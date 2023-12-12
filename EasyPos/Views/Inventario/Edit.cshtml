@@ -1,0 +1,69 @@
+﻿@model EasyPos.Models.Inventario
+
+
+@using (Html.BeginForm("Edit", "Inventario", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InventarioId)
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.DropDownList("productoId", null, htmlAttributes:  new { @class = "select2 form-control has-feedback-left" })
+            @*@Html.EditorFor(model => model.ProductoId, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "ProductoId", autocomplete = "off" } })*@
+            <span class="fa fa-box-open form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.ProductoId, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockMin, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Mínimo", autocomplete = "off" } })
+            <span class="fa fa-box form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockMin, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockMax, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Máximo", autocomplete = "off" } })
+            <span class="fa fa-boxes form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockMax, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-6 col-sm-6 has-feedback">
+            @Html.EditorFor(model => model.StockDisponible, new { htmlAttributes = new { @class = "form-control has-feedback-left", placeholder = "Stock Disponible", autocomplete = "off" } })
+            <span class="fa fa-dolly form-control-feedback left" aria-hidden="true"></span>
+            @Html.ValidationMessageFor(model => model.StockDisponible, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group col-md-9 col-sm-9">
+            @*<div class="col-md-10">
+        <div class="checkbox">
+        <label>
+        @Html.CheckBoxFor(model => model.estado, new { @class = "flat", @checked = "checked" }) Estado
+        </label>
+        @Html.ValidationMessageFor(model => model.estado, "", new { @class = "text-danger" })
+        </div>
+        </div>*@
+            <div class="checkbox">
+                <label>
+                    @*<input type="checkbox" checked> Estado*@
+                    @Html.CheckBoxFor(model => model.Estado, new { @class = "flat", @checked = "checked" }) Estado
+                </label>
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit" class="btn btn-success btn-sm">
+                    <i class="fa fa-edit"></i> Editar
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@* @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+} *@

@@ -1,7 +1,9 @@
 ﻿using EasyPos.Models;
 using EasyPos.Models.ViewModels;
+using EasyPos.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
 namespace EasyPos.Controllers
@@ -9,9 +11,11 @@ namespace EasyPos.Controllers
     public class LoginController : Controller
     {
         private readonly EasyPosDb db;
-        public LoginController(EasyPosDb _db)
+        private readonly SessionHelper _sessionHelper;
+        public LoginController(EasyPosDb _db, SessionHelper sessionHelper)
         {
             this.db = _db;
+            _sessionHelper = sessionHelper ?? throw new ArgumentNullException(nameof(sessionHelper));
         }
         public IActionResult Index()
         {
@@ -42,37 +46,25 @@ namespace EasyPos.Controllers
                         ModelState.AddModelError("", "Usuario o contraseña inválido!");
                         return View(login);
                     }
+                    var menu = db.UsuarioRol.Include(x => x.Rol).Where(x => x.UsuarioId == user.UsuarioId && x.Estado == true).ToList();
+
+
+                    HttpContext.Session.SetString("UserId", user.UsuarioId.ToString());
+                    HttpContext.Session.SetString("User", user.NombreIdentificador.ToString());
+                    HttpContext.Session.SetString("UserName", user.Nombre.ToString());
+
+                    List<string> lista = new List<string>();
+                    foreach (var item in menu)
+                    {
+                        lista.Add(item.Rol.Descripcion.ToString());
+                    }
+                    _sessionHelper.SetListMenu("ListMenu", lista);
+
+                    //var userId = HttpContext.Session.GetString("UserId");
+                    //var User = HttpContext.Session.GetString("User");
+                    //var UserName = HttpContext.Session.GetString("UserName");
+
                     return RedirectToAction("Index", "Home");
-                    //var menu = db.PermisosEnMenu(user.usuarioId).Select(x => new Menu
-                    //{
-                    //    SeguridadGrupoId = x.grupoId,
-                    //    Grupo = x.menu,
-                    //    Opcion = x.submenu,
-                    //    PermisoId = x.permisoId,
-                    //    Controller = x.controlador,
-                    //    Icono = x.iconoMenu,
-                    //    Orden = x.ordenMenu,
-                    //    Ordensubmenu = x.ordenSubmenu,
-                    //}).ToList();
-
-                    //Session["Menu"] = menu.OrderBy(c => c.Orden).ToList();
-                    //Session["UserId"] = user.usuarioId;
-                    //Session["User"] = user.usuario;
-                    //Session["UserName"] = user.nombre;
-
-                    //bool accDashboard = menu.Any(x => x.Controller.Contains("Dashboard"));
-                    //if (accDashboard)
-                    //{
-                    //    var permisoRol = Validate.ValidatePermission(nameof(DashboardController), "consultar");
-                    //    var rol = db.UsuarioRol.Where(x => x.rolId == permisoRol.RolId).Include(x => x.Roles).FirstOrDefault();
-                    //    if (rol.Roles.descripcion.Contains("Admin") || rol.Roles.descripcion.Contains("RRHH"))
-                    //    {
-                    //        return RedirectToAction("Index", "Dashboard");
-                    //    }
-                    //}
-                    //return RedirectToAction("Index", "Home");
-
-                    //ModelState.AddModelError("", authenticationResult.ErrorMessage);
                 }
                 return View(login);
             }

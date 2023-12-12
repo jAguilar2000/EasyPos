@@ -1,12 +1,13 @@
 ﻿@page
+@inject EasyPos.Utils.SessionHelper SessionHelper;
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h2 class="display-4">Bienvendido, <strong>Joshua Aguilar</strong></h2>
+    <h2 class="display-4">Bienvendido, <strong>@SessionHelper.GetUserName()</strong></h2>
 
-    <img src="~/images/LogoProyecto.jpg"/>
+    <img width="75%" src="~/images/LogoProyecto.jpg"/>
     @*<p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
 </div>

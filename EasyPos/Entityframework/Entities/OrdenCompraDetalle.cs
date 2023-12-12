@@ -14,8 +14,8 @@ namespace EasyPos.Models
         public decimal Isv { get; set; }
         public int EstadoId { get; set; }
 
-        public virtual Estado Estados { get; set; } = new Estado();
-        public virtual OrdenCompra OrdenCompra { get; set; } = new OrdenCompra();
-        public virtual Producto Producto { get; set; } = new Producto();
+        public virtual Estado? Estados { get; set; }
+        public virtual OrdenCompra? OrdenCompra { get; set; }
+        public virtual Producto? Producto { get; set; }
     }
 }

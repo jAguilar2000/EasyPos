@@ -14,7 +14,7 @@ namespace EasyPos.Models
         public decimal Isv { get; set; }
         public bool Estado { get; set; }
 
-        public virtual CategoriaProducto CategoriaProducto { get; set; } = new CategoriaProducto();
+        public virtual CategoriaProducto? CategoriaProducto { get; set; } 
         public virtual ICollection<FacturaDetalle> FacturaDetalle { get; set; } = new HashSet<FacturaDetalle>();
         public virtual ICollection<Inventario> Inventario { get; set; } = new HashSet<Inventario>();
         public virtual ICollection<OrdenCompraDetalle> OrdenCompraDetalle { get; set; } = new HashSet<OrdenCompraDetalle>();
