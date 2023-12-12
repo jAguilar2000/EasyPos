@@ -1,0 +1,111 @@
+﻿@model IEnumerable<EasyPos.Models.ViewModels.OrdenCompraHeader>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Lista de Orden de Compra</h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <a type="button" class="btn btn-primary btn-sm" href="@Url.Action("Create")"> <i class="ace-icon fa fa-plus-circle bigger-120"></i> Registrar Orden Compra</a>
+
+                    </li>
+                    <li>
+                        <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive">
+                            <table id="datatable" class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>
+                                            Proveedor
+                                        </th>
+                                        <th>
+                                            Fecha
+                                        </th>
+                                        <th>
+                                            Sub Total
+                                        </th>
+                                        <th>
+                                            Isv
+                                        </th>
+                                        <th>
+                                            Total
+                                        </th>
+                                        <th>
+                                            Estado
+                                        </th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CompraId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.nombreProveedor)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Fecha)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SubTotal)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Isv)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Total)
+                                            </td>
+                                            <td>
+                                                @if (item.Estado)
+                                                {
+                                                    <apan class="badge badge-success">Activo</apan>
+                                                }
+                                                else
+                                                {
+                                                    <apan class="badge badge-danger">Inactivo</apan>
+
+                                                }
+                                            </td>
+                                            <td>
+                                                <a href="@Url.Action("PreviewFactura", "Factura", new { facturaId = item.CompraId })" class="btn btn-primary btn-sm" title="Imprimir">
+                                                    <i class="fa fa-print"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+}

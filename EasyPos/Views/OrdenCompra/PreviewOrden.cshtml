@@ -1,0 +1,63 @@
+﻿@model EasyPos.Models.ViewModels.PrintOrdenCompra // Asegúrate de que el modelo coincida con tu clase de modelo de Factura
+
+<!-- Mostrar detalles de la factura -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vista Previa de Orden Compra</title>
+    <style>
+        /* Estilos CSS para la factura */
+        /* ... Agrega tus estilos CSS personalizados aquí ... */
+    </style>
+</head>
+<body>
+    <div id="factura">
+        <h1>#Orden Compra: @Model.compraId</h1>
+        <p>Proveedor: @Model.proveedorNombre</p>
+        <p>Fecha: @Model.fecha</p>
+        <!-- Otros detalles de la factura -->
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Costo</th>
+                    <th>Isv</th>
+                    <th>SubTotal</th>
+                    <!-- Otros encabezados de columna -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.detalles)
+                {
+                    <tr>
+                        <td>@item.codProducto</td>
+                        <td>@item.producto</td>
+                        <td>@item.cantidad</td>
+                        <td>@item.costo</td>
+                        <td>@item.isv</td>
+                        <td>@item.subTotal</td>
+                        <!-- Otros datos de detalle de la factura -->
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div style="text-align:right; padding: 20px;">
+            <p>Sub total: @Model.totalSubtotal</p>
+            <p>Isv: @Model.totalIsv</p>
+            <p>Total a pagar: @Model.totalPagar</p>
+        </div>
+        <!-- Otros detalles de la factura -->
+    </div>
+
+    <button class="btn btn-primary" onclick="window.print()"><i class="fa fa-print"></i></button>
+    <button onclick="location.href = '@Url.Action("Index", "OrdenCompra")'" class="btn btn-dark btn-sm">
+        <i class="fa fa-mail-reply"></i>
+        Regresar
+    </button>
+    <script>
+        // JavaScript si es necesario
+    </script>
+</body>
+</html>

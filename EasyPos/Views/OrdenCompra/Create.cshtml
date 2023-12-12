@@ -1,0 +1,183 @@
+﻿@model EasyPos.Models.OrdenCompra
+@{
+    ViewBag.Title = "Create";
+}
+@Html.AntiForgeryToken()
+
+<div class="x_panel">
+    <div class="x_title">
+        <h2>Facturar</h2>
+        <ul class="nav navbar-right panel_toolbox">
+            <li>
+                <button onclick="location.href = '@Url.Action("Index", "OrdenCompra")'" class="btn btn-dark btn-sm">
+                    <i class="fa fa-mail-reply"></i>
+                    Regresar
+                </button>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group col-md-6 col-sm-6 has-feedback">
+                @Html.DropDownList("proveedorId", null, new { @class = "select2 form-control has-feedback-left" })
+                @Html.ValidationMessageFor(model => model.ProveedorId, "", new { @class = "text-danger" })
+                <span class="fa fa-user form-control-feedback left" aria-hidden="true"></span>
+            </div>
+
+            <div class="form-group col-md-6 col-sm-6">
+
+                <ul class="nav navbar-right panel_toolbox">
+                    <li>
+                        <button id="btnGuardar" class="btn btn-success">
+                            <i class="fa fa-save"></i>
+                            Guardar
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#roles" aria-current="page">Detalle</a>
+    </li>
+</ul>
+<div class="tab-content">
+    <div id="roles" class="tab-pane active">
+        @Html.Partial("_OrdenDetalle", Model)
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            var globalTotalISV = 0;
+            var globalTotalSubtotal = 0;
+
+            $("#btnAgregar").click(function () {
+                var productoId = $('#productoId').val();
+                var productoDesc = $('#productoId option:selected').text();
+                var txtCantidad = $('#cantidad').val();
+                var txtCosto = $('#costoProd').val();
+                var txtIsv = $('#isvProd').val();
+
+                if (txtCantidad == "" || (txtCantidad <= 0)) {
+                    alert("Cantidad incorrecta.");
+                    return;
+                }
+
+                if (productoId == "") {
+                    alert("Seleccione producto.");
+                    return;
+                }
+
+                if (txtCosto == "" || txtCosto <= 0) {
+                    alert("Costo invalido.");
+                    return;
+                }
+
+                var newRow = '<tr>' +
+                    '<td>' + productoId + '</td>' +
+                    '<td>' + productoDesc + '</td>' +
+                    '<td>' + parseFloat(txtCantidad).toFixed(2) + '</td>' +
+                    '<td>' + parseFloat(txtCosto).toFixed(2) + '</td>' +
+                    '<td>' + ((parseFloat(txtIsv) / 100) * parseFloat(txtCantidad) * parseFloat(txtCosto)).toFixed(2) + '</td>' +
+                    '<td>' + (parseFloat(txtCantidad) * parseFloat(txtCosto)).toFixed(2) + '</td>' +
+                    '<td><a href="#" class="btn btn-danger btn-sm" title="Quitar"><i class="fa fa-remove"></i></a></td>' +
+                    '</tr>';
+
+                $('#datatable2 tbody').prepend(newRow);
+                $('#cantidad').val('0.00');
+                $('#costoProd').val('0.00');
+                $('#isvProd').val('0.00');
+                actualizarTotales();
+            });
+
+            $('#datatable2').on('click', 'a.btn-danger', function () {
+                $(this).closest('tr').remove();
+                actualizarTotales();
+            });
+
+
+
+            function actualizarTotales() {
+                let totalISV = 0;
+                let totalSubtotal = 0;
+
+                // Recorrer las filas de la tabla
+                $('#datatable2 tbody tr').each(function () {
+                    const isv = parseFloat($(this).find('td:eq(4)').text());
+                    const subtotal = parseFloat($(this).find('td:eq(5)').text());
+
+                    totalISV += isNaN(isv) ? 0 : isv;
+                    totalSubtotal += isNaN(subtotal) ? 0 : subtotal;
+                });
+
+                // Mostrar los totales en el pie de tabla
+                $('#datatable2 tfoot td:eq(1)').html(' <strong>' + totalISV.toFixed(2) + '</strong>');
+                $('#datatable2 tfoot td:eq(2)').html(' <strong>' + totalSubtotal.toFixed(2) + '</strong>');
+
+                const totalPagar = totalISV + totalSubtotal;
+                $('#datatable2 tfoot td:eq(0)').html('<h5>Total a pagar: <strong>' + totalPagar.toFixed(2) + '</strong></h5>');
+
+                globalTotalISV = totalISV;
+                globalTotalSubtotal = totalSubtotal;
+            }
+
+            // $("#productoId").change(function () {
+            //     if ($(this).val() == "") {
+            //         $("#costoProd").val("0.00");
+            //         $("#isvProd").val("0.00");
+            //     } else {
+            //         $.getJSON("/OrdenCompra/GetProducto", { productoId: $("#productoId").val() }, function (data) {
+            //             $("#costoProd").val(data.precio);
+            //             $("#isvProd").val(data.isv);
+            //         });
+            //     }
+            // });
+
+            $('#btnGuardar').click(function () {
+                guardarDatos();
+            });
+
+            function guardarDatos() {
+
+                let proveedorId = parseInt($('#proveedorId').val());
+                let subTotal = globalTotalSubtotal
+                let isv = globalTotalISV
+
+                let datosTabla = [];
+                $('#datatable2 tbody tr').each(function () {
+                    debugger;
+                    let productoId = parseInt($(this).find('td:eq(0)').text());
+                    let cantidad = parseFloat($(this).find('td:eq(2)').text());
+                    let costo = parseFloat($(this).find('td:eq(3)').text());
+                    let isv = parseFloat($(this).find('td:eq(4)').text());
+                    let subTotal = parseFloat($(this).find('td:eq(5)').text());
+
+                    datosTabla.push({ productoId, cantidad, costo, isv, subTotal });
+                });
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/OrdenCompra/CreateDetalle',
+                    contentType: 'application/json; charset=utf-8',
+                    data: JSON.stringify({ datosTabla, proveedorId: proveedorId, subTotal: subTotal, isv: isv }),
+                    success: function (response) {
+                        debugger;
+                        var id = response;
+                        location.href = '@Url.Action("PreviewOrden", "OrdenCompra")?compraId=' + id;
+                    },
+                    error: function (error) {
+                        console.error('Error al enviar datos al servidor:', error);
+                    }
+                });
+            }
+
+        });
+    </script>
+}
