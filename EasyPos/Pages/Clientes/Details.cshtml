@@ -5,17 +5,11 @@
     ViewData["Title"] = "Details";
 }
 
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="x_panel">
-            <div class="x_title">
-<h5>Detalles</h5>
+<h1>Details</h1>
 
 <div>
-                    <h4>Cliente</h4>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
+    <h4>Cliente</h4>
+    <hr />
     <dl class="row">
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Cliente.Dni)
@@ -50,10 +44,6 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Cliente?.ClienteId">Editar</a> |
-    <a asp-page="./Index">Regresar al listado</a>
-</div>
-
-        </div>
-    </div>
+    <a asp-page="./Edit" asp-route-id="@Model.Cliente?.ClienteId">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
 </div>

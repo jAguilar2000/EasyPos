@@ -5,16 +5,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="row">
-    <div class="col-md-12 col-sm-12">
-        <div class="x_panel">
-            <div class="x_title">
-<h5>Editar</h5>
+<h1>Edit</h1>
 
-                <h4>Estado</h4>
-                <div class="clearfix"></div>
-            </div>
-            <div class="x_content">
+<h4>Estado</h4>
+<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -26,18 +20,14 @@
                 <span asp-validation-for="Estado.Descripcion" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Guardar" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="./Index">Regresar al listado</a>
-                </div>
-            </div>
-        </div>
-    </div>
+    <a asp-page="./Index">Back to List</a>
 </div>
 
 @section Scripts {

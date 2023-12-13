@@ -49,7 +49,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Rol rol)
+        public ActionResult Create( Rol rol)
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 

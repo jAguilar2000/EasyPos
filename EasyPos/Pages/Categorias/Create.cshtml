@@ -13,42 +13,32 @@
 </head>
 <body>
 
-    <div class="row">
-        <div class="col-md-12 col-sm-12">
-            <div class="x_panel">
-                <div class="x_title">
-                    <h4>Categorías</h4>
-                    <div class="clearfix"></div>
-                </div>
-                <div class="x_content">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <form method="post">
-                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <div class="form-group">
-                                    <label asp-for="CategoriaProducto.Descripcion" class="control-label"></label>
-                                    <input asp-for="CategoriaProducto.Descripcion" class="form-control" />
-                                    <span asp-validation-for="CategoriaProducto.Descripcion" class="text-danger"></span>
-                                </div>
-                                <div class="form-group form-check">
-                                    <label class="form-check-label">
-                                        <input class="form-check-input" asp-for="CategoriaProducto.Estado" /> @Html.DisplayNameFor(model => model.CategoriaProducto.Estado)
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" value="Registrar" class="btn btn-primary" />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-                    <div>
-                        <a asp-page="Index">Regresar al listado</a>
-                    </div>
-                </div>
+<h4>CategoriaProducto</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoriaProducto.Descripcion" class="control-label"></label>
+                <input asp-for="CategoriaProducto.Descripcion" class="form-control" />
+                <span asp-validation-for="CategoriaProducto.Descripcion" class="text-danger"></span>
             </div>
-        </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="CategoriaProducto.Estado" /> @Html.DisplayNameFor(model => model.CategoriaProducto.Estado)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
