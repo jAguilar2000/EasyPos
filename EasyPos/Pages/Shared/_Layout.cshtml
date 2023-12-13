@@ -2,7 +2,7 @@
 
 @{
     // Supongamos que deseas recuperar una lista de cadenas almacenada en la sesión con la clave "MiLista"
-    List<object> miLista = SessionHelper.GetListMenu<List<object>>("ListMenu");
+    List<object> miLista = SessionHelper.GetListMenu<List<object>>("ListMenu") ?? Enumerable.Empty<object>().ToList();
 }
 <!DOCTYPE html>
 <html>

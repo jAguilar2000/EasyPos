@@ -9,10 +9,11 @@
   },
   "profiles": {
     "EasyPos": {
+      "launchBrowser": true,
+      "launchUrl": "login",
       "hotReloadEnabled": true,
       "commandName": "Project",
       "dotnetRunMessages": true,
-      "launchBrowser": false,
       "applicationUrl": "http://localhost:7268;http://localhost:5049",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
