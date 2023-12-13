@@ -17,7 +17,7 @@ namespace EasyPos.Controllers
             _sessionHelper = sessionHelper ?? throw new ArgumentNullException(nameof(sessionHelper));
         }
 
-        public async Task< IActionResult> Index()
+        public async Task<IActionResult> Index()
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
@@ -80,7 +80,7 @@ namespace EasyPos.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( Usuario usuario)
+        public ActionResult Create(Usuario usuario)
         {
             List<string> listaRecuperada = _sessionHelper.GetListMenu<List<string>>("ListMenu");
 
